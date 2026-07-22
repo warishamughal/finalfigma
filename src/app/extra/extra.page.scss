@@ -1,0 +1,21 @@
+
+ion-alert {
+  --background: #ffb5b5;               
+  --ion-text-color: rgb(234, 10, 10);            
+  --ion-alert-message-color: red;   
+}
+
+ion-alert::part(button) {
+  --color: rgb(89, 210, 8) !important;
+}
+
+::ng-deep ion-alert .alert-message {
+  color: rgb(173, 62, 62) !important;
+  font-size: 17px !important;
+}
+
+::ng-deep ion-alert button {
+  color: rgb(210, 8, 106) !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}

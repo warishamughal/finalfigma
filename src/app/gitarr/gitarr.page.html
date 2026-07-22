@@ -1,0 +1,138 @@
+<ion-content [fullscreen]="true">
+  <div class="main-container">
+    
+    <!-- Top Header Curve -->
+    <div class="top-curve">
+      <div class="header-text">
+        <h1>PERFORMANCE</h1>
+        <p>SAMPLES</p>
+      </div>
+    </div>
+
+    <div class="content-wrapper">
+      
+      <!-- Left Control Panel (Close) -->
+      <div class="control-panel left-panel">
+        <div class="panel-inner">
+          <div class="panel-content">
+            <p class="label">Close</p>
+            
+            <!-- Main Knob -->
+            <div class="knob-container">
+              <div class="knob">
+                <div class="knob-indicator"></div>
+              </div>
+            </div>
+
+            <!-- Pan Slider -->
+            <div class="pan-control">
+              <span class="pan-label">L</span>
+              <ion-range 
+                min="-100" 
+                max="100" 
+                [(ngModel)]="closePan"
+                (ionChange)="updateClosePan($event)">
+              </ion-range>
+              <span class="pan-label">R</span>
+            </div>
+
+            <!-- M and S Buttons -->
+            <div class="ms-buttons">
+              <button class="ms-btn">M</button>
+              <button class="ms-btn">S</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Instrument Area -->
+      <div class="center-area">
+        <!-- Image placeholder -->
+        <div class="instrument-image">
+          <img src="assets/violin.png" alt="Violin" />
+        </div>
+
+        <!-- Velocity/Keyswitch Buttons -->
+        <div class="mode-buttons">
+          <button class="mode-btn active">Velocity</button>
+          <button class="mode-btn">Keyswitch</button>
+        </div>
+
+        <!-- Release Slider -->
+        <div class="release-control">
+          <span class="release-label">Release</span>
+          <ion-range 
+            min="0" 
+            max="25" 
+            step="0.1"
+            [(ngModel)]="releaseValue"
+            (ionChange)="updateRelease($event)">
+          </ion-range>
+          <span class="release-value">{{releaseValue.toFixed(1)}}k ms</span>
+        </div>
+      </div>
+
+      <!-- Right Control Panel (AB) -->
+      <div class="control-panel right-panel">
+        <div class="panel-inner">
+          <div class="panel-content">
+            <p class="label">AB</p>
+            
+            <!-- Main Knob -->
+            <div class="knob-container">
+              <div class="knob">
+                <div class="knob-indicator"></div>
+              </div>
+            </div>
+
+            <!-- Pan Slider -->
+            <div class="pan-control">
+              <span class="pan-label">L</span>
+              <ion-range 
+                min="-100" 
+                max="100" 
+                [(ngModel)]="abPan"
+                (ionChange)="updateAbPan($event)">
+              </ion-range>
+              <span class="pan-label">R</span>
+            </div>
+
+            <!-- M and S Buttons -->
+            <div class="ms-buttons">
+              <button class="ms-btn">M</button>
+              <button class="ms-btn">S</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Curve with Controls -->
+    <div class="bottom-curve">
+      <div class="bottom-controls">
+        <div class="control-box">
+          <div class="inset-box">
+            <span class="control-value">{{transpose}}</span>
+          </div>
+          <p class="control-label">Transpose</p>
+        </div>
+
+        <div class="control-box">
+          <div class="inset-box">
+            <span class="control-value">{{dynamicCC}}</span>
+          </div>
+          <p class="control-label">Dynamic CC</p>
+        </div>
+
+        <div class="control-box">
+          <div class="inset-box">
+            <span class="control-value">{{sampleOffset}}</span>
+          </div>
+          <p class="control-label">Sample Offset</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

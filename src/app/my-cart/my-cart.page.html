@@ -1,0 +1,186 @@
+<ion-content>
+  <!-- Header inside content -->
+  <div class="cart-header-inside">
+    <ion-button fill="clear" color="dark" routerLink="/home" (click)="goBack()" class="back-btn-inline">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <h1 class="cart-title-inline">MY Cart</h1>
+  </div>
+
+  <ion-grid class="cart-grid">
+    <ion-row>
+      <ion-col size="12" size-md="6">
+
+        <!-- ✅ cartProducts() - signal call with () -->
+        @for (item of cartProducts(); track item; let i = $index) {
+        <ion-item lines="full" class="product-item" (click)="openProduct(item)">
+          <ion-thumbnail slot="start">
+            <div class="imgwrap">
+              <img src="p{{item.img}}" alt="Product Image" />
+            </div>
+          </ion-thumbnail>
+
+          <ion-label>
+            <h2>{{item.name}}</h2>
+            <p>{{item.size}}</p>
+
+            <!-- Quantity Controls -->
+            <div class="qty-row">
+              <ion-button fill="clear" size="small" class="qty-btn minus"
+                          (click)="goto(i, 'dec'); $event.stopPropagation()">
+                <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+              </ion-button>
+
+              <span class="qty-number">{{item.quantity}}</span>
+
+              <ion-button fill="clear" size="small" class="qty-btn plus"
+                          (click)="goto(i, 'inc'); $event.stopPropagation()">
+                <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+              </ion-button>
+            </div>
+
+            <p style="color: black; font-size: 16px; margin-top: 7px; font-weight: 550;">
+subtotal ${{ (item.price || 0) * (item.quantity || 0) }}            </p>
+          </ion-label>
+
+          <!-- Delete Button and Price -->
+          <div slot="end" class="right-side">
+            <ion-icon name="close-outline" class="delete-icon"
+              (click)="removeItem(i); $event.stopPropagation()">
+            </ion-icon>
+            <div class="price">${{item.price}}</div>
+          </div>
+        </ion-item>
+        }
+
+      </ion-col>
+
+      <!-- Order Summary -->
+      <ion-col size="12" size-md="6">
+        <div class="summary-box">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>Subtotal</ion-label>
+              <ion-note slot="end" class="subtotal">${{ calculate().subtotal }}</ion-note>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Discount</ion-label>
+              <ion-note slot="end" class="discount">${{ calculate().discount }}</ion-note>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Shipping</ion-label>
+              <ion-note slot="end" class="shipping" style="font-size: 17px;">
+                ${{ calculate().shipping }}
+              </ion-note>
+            </ion-item>
+
+            <ion-item>
+              <ion-label><strong>Grand Total</strong></ion-label>
+              <ion-note slot="end" class="gtotal">
+                <strong>${{ calculate().grandTotal }}</strong>
+              </ion-note>
+            </ion-item>
+          </ion-list>
+
+          <ion-button id="open-modal" fill="clear" class="green-btn" expand="block">
+            Proceed to Checkout
+          </ion-button>
+
+          <!-- Checkout Modal -->
+          <ion-modal
+            #checkoutModal
+            trigger="open-modal"
+            [initialBreakpoint]="0.95"
+            [breakpoints]="[0, 0.5, 0.95]"
+            class="modern-checkout-modal">
+            <ng-template>
+              <div class="modern-modal-wrapper">
+                <!-- Drag Handle -->
+                <div class="modal-handle"></div>
+
+                <!-- Header -->
+                <div class="modern-checkout-header">
+                  <div class="header-content">
+                    <div class="icon-wrapper">
+                      <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+                    </div>
+                    <h2 class="checkout-title">Checkout</h2>
+                    <p class="checkout-subtitle">Complete your order</p>
+                  </div>
+                  <ion-button
+                    fill="clear"
+                    class="close-button"
+                    (click)="checkoutModal.dismiss()">
+                    <ion-icon name="close-circle-outline"></ion-icon>
+                  </ion-button>
+                </div>
+
+                <!-- Content -->
+                <div class="modern-checkout-content">
+                  <!-- Delivery Method -->
+                  <div class="checkout-card delivery-card">
+                    <div class="card-icon-wrapper">
+                      <ion-icon name="bicycle-outline" class="card-icon"></ion-icon>
+                    </div>
+                    <div class="card-content">
+                      <h3>Delivery Method</h3>
+                      <p>Choose your preferred delivery</p>
+                    </div>
+                    <ion-icon name="chevron-forward-outline" class="arrow-icon"></ion-icon>
+                  </div>
+
+                  <!-- Payment Method -->
+                  <div class="checkout-card payment-card">
+                    <div class="card-icon-wrapper">
+                      <ion-icon name="card-outline" class="card-icon"></ion-icon>
+                    </div>
+                    <div class="card-content">
+                      <h3>Payment Method</h3>
+                      <p>Secure payment options</p>
+                    </div>
+                    <ion-icon name="chevron-forward-outline" class="arrow-icon"></ion-icon>
+                  </div>
+
+                  <!-- Total Cost -->
+                  <div class="checkout-card total-card">
+                    <div class="card-icon-wrapper">
+                      <ion-icon name="wallet-outline" class="card-icon"></ion-icon>
+                    </div>
+                    <div class="card-content">
+                      <h3>Total Cost</h3>
+                      <!-- ✅ calculate() signal reactive -->
+                      <p class="total-amount">${{ calculate().grandTotal }}</p>
+                    </div>
+                    <div class="sparkle">✨</div>
+                  </div>
+
+                  <!-- Terms -->
+                  <div class="terms-wrapper">
+                    <ion-icon name="shield-checkmark-outline" class="shield-icon"></ion-icon>
+                    <p class="terms-text">
+                      By placing an order you agree to our
+                      <span class="terms-link">Terms & Conditions</span>
+                    </p>
+                  </div>
+
+                  <!-- Place Order Button -->
+                  <ion-button
+                    expand="block"
+                    class="modern-place-order"
+                    (click)="placeOrder(checkoutModal)">
+                    <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+                    Place Order
+                    <div class="button-shine"></div>
+                  </ion-button>
+                </div>
+              </div>
+            </ng-template>
+          </ion-modal>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<app-footer></app-footer>

@@ -1,0 +1,138 @@
+<ion-content class="ion-padding">
+  <div class="custom-header">
+    <ion-icon name="arrow-back-outline" class="back-icon" (click)="goBack()"></ion-icon>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <!-- Left Section -->
+      <ion-col size="12" size-md="5" offset-md="0.5">
+        <!-- Contact Info -->
+        <ion-card class="contact-card">
+          <ion-card-header>
+            <ion-card-title>Contact info</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-label class="label-left">Email:</ion-label>
+              <ion-text class="value-right">{{ contactInfo.email }}</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label class="label-left">Phone:</ion-label>
+              <ion-text class="value-right">{{ contactInfo.phone }}</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label class="label-left">Address:</ion-label>
+              <ion-text class="value-right">{{ contactInfo.address }}</ion-text>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+       <!-- Payment Method -->
+<ion-card class="payment-card">
+  <ion-card-header>
+    <ion-card-title>Payment Method</ion-card-title>
+  </ion-card-header>
+  
+  <ion-card-content>
+    <div class="payment-options-wrapper">
+      <div class="payment-option" [class.selected]="selectedPayment === 'cod'" (click)="selectPayment('cod')">
+        <div class="option-content">
+          <ion-icon name="wallet-outline" class="payment-icon"></ion-icon>
+          <span>Cash on Delivery</span>
+        </div>
+        <div class="radio-indicator"></div>
+      </div>
+      <div class="payment-option" [class.selected]="selectedPayment === 'card'" (click)="selectPayment('card')">
+        <div class="option-content">
+          <ion-icon name="card-outline" class="payment-icon"></ion-icon>
+          <span>Card Payment</span>
+        </div>
+        <div class="radio-indicator"></div>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<!-- Delivery Type -->
+<ion-card class="delivery-card">
+  <ion-card-header>
+    <ion-card-title>Delivery Type</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="delivery-options-wrapper">
+      <div class="delivery-option" [class.selected]="selectedDelivery === 'standard'" (click)="selectDelivery('standard')">
+        <div class="option-content">
+          <ion-icon name="bicycle-outline" class="delivery-icon"></ion-icon>
+          <div class="delivery-details">
+            <span>Standard Shipping</span>
+            <small>(3–5 days)</small>
+          </div>
+        </div>
+        <div class="radio-indicator"></div>
+      </div>
+      <div class="delivery-option" [class.selected]="selectedDelivery === 'express'" (click)="selectDelivery('express')">
+        <div class="option-content">
+          <ion-icon name="airplane-outline" class="delivery-icon"></ion-icon>
+          <div class="delivery-details">
+            <span>Express Delivery</span>
+            <small>(1–2 days, +$200)</small>
+          </div>
+        </div>
+        <div class="radio-indicator"></div>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>
+      </ion-col>
+
+      <!-- Right Section -->
+      <ion-col size="12" size-md="5" offset-md="0.5">
+        <!-- Products -->
+        <ion-card class="summary-card">
+          <ion-card-header>
+            <ion-card-title>Products</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card class="product-card" *ngFor="let item of cartItems">
+              <div class="card-content">
+                <img [src]="'p' + item.img" [alt]="item.name" />
+                <div class="info">
+                  <h3>{{ item.name }}</h3>
+                  <p class="size">Size: {{ item.size }}</p>
+                  <p class="price">Rs {{ item.price * item.quantity }}</p>
+                  <p class="qty">Qty: {{ item.quantity }}</p>
+                </div>
+              </div>
+            </ion-card>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- Order Summary -->
+        <ion-card class="summary-card">
+          <ion-card-header>
+            <ion-card-title>Order Summary</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-label>Subtotal</ion-label>
+              <ion-text>${{ orderSummary.subtotal }}</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Shipping</ion-label>
+              <ion-text>${{ orderSummary.shipping }}</ion-text>
+            </ion-item>
+            <div class="divider"></div>
+            <ion-item lines="none">
+              <ion-label>Total</ion-label>
+              <ion-text>${{ orderSummary.total }}</ion-text>
+            </ion-item>
+            <ion-button expand="block" class="place-order-btn" (click)="placeOrder()">
+              <span style="color:white;">Confirm Order</span>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

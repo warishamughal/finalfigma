@@ -1,0 +1,384 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 50%, #e0e0e0 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+// Top Curve Header
+.top-curve {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+
+  .header-text {
+    text-align: center;
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin: 0;
+      color: #2c2c2c;
+    }
+    
+    p {
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin: 5px 0 0 0;
+      color: #888;
+      font-weight: 300;
+    }
+  }
+}
+
+// Content Wrapper
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 60px;
+  position: relative;
+}
+
+// Control Panels (Left & Right)
+.control-panel {
+  width: 280px;
+  height: 420px;
+  position: relative;
+
+  .panel-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #f8f8f8, #e0e0e0);
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: 
+      -10px -10px 30px rgba(255, 255, 255, 0.8),
+      10px 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .panel-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    .label {
+      font-size: 16px;
+      font-weight: 500;
+      color: #555;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+// Knob Design
+.knob-container {
+  position: relative;
+  
+  .knob {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffffff, #d5d5d5);
+    box-shadow: 
+      inset -5px -5px 15px rgba(255, 255, 255, 0.9),
+      inset 5px 5px 15px rgba(0, 0, 0, 0.1),
+      -5px -5px 20px rgba(255, 255, 255, 0.8),
+      5px 5px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .knob-indicator {
+      width: 4px;
+      height: 35px;
+      background: #333;
+      border-radius: 2px;
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// Pan Control
+.pan-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0 10px;
+
+  .pan-label {
+    font-size: 12px;
+    color: #666;
+    font-weight: 600;
+  }
+
+  ion-range {
+    flex: 1;
+    --bar-background: #ddd;
+    --bar-background-active: #888;
+    --knob-background: #fff;
+    --knob-box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+}
+
+// M and S Buttons
+.ms-buttons {
+  display: flex;
+  gap: 15px;
+
+  .ms-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #f0f0f0, #d0d0d0);
+    box-shadow: 
+      -3px -3px 10px rgba(255, 255, 255, 0.8),
+      3px 3px 10px rgba(0, 0, 0, 0.15);
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:active {
+      box-shadow: 
+        inset -2px -2px 8px rgba(255, 255, 255, 0.8),
+        inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+// Center Area
+.center-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  max-width: 500px;
+
+  .instrument-image {
+    width: 250px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
+    }
+  }
+
+  .mode-buttons {
+    display: flex;
+    gap: 15px;
+
+    .mode-btn {
+      padding: 10px 30px;
+      border-radius: 25px;
+      background: linear-gradient(145deg, #f0f0f0, #d5d5d5);
+      box-shadow: 
+        -3px -3px 10px rgba(255, 255, 255, 0.8),
+        3px 3px 10px rgba(0, 0, 0, 0.15);
+      border: none;
+      font-size: 13px;
+      font-weight: 500;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &.active {
+        background: linear-gradient(145deg, #fff, #e8e8e8);
+        box-shadow: 
+          inset -2px -2px 8px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 8px rgba(0, 0, 0, 0.1);
+        color: #333;
+      }
+    }
+  }
+
+  .release-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+
+    .release-label {
+      font-size: 13px;
+      color: #666;
+      font-weight: 500;
+      min-width: 60px;
+    }
+
+    ion-range {
+      flex: 1;
+      --bar-background: #ddd;
+      --bar-background-active: #888;
+      --knob-background: #fff;
+      --knob-box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .release-value {
+      font-size: 12px;
+      color: #666;
+      font-weight: 600;
+      min-width: 60px;
+      text-align: right;
+    }
+  }
+}
+
+// Bottom Curve
+.bottom-curve {
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(0deg, #ffffff 0%, #f0f0f0 100%);
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.bottom-controls {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+
+  .control-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    .inset-box {
+      width: 90px;
+      height: 50px;
+      background: linear-gradient(145deg, #d5d5d5, #f0f0f0);
+      box-shadow: 
+        inset -3px -3px 10px rgba(255, 255, 255, 0.5),
+        inset 3px 3px 10px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .control-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+      }
+    }
+
+    .control-label {
+      font-size: 11px;
+      color: #666;
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+  .content-wrapper {
+    padding: 30px 40px;
+  }
+
+  .control-panel {
+    width: 240px;
+    height: 380px;
+  }
+}
+
+@media (max-width: 900px) {
+  .content-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .control-panel {
+    width: 100%;
+    max-width: 300px;
+    height: 350px;
+  }
+
+  .center-area {
+    .instrument-image {
+      width: 200px;
+      height: 280px;
+    }
+  }
+
+  .bottom-controls {
+    gap: 20px;
+    
+    .control-box {
+      .inset-box {
+        width: 70px;
+        height: 45px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .top-curve {
+    height: 100px;
+    
+    .header-text h1 {
+      font-size: 22px;
+    }
+    
+    .header-text p {
+      font-size: 10px;
+    }
+  }
+
+  .content-wrapper {
+    padding: 20px;
+  }
+
+  .bottom-curve {
+    height: 140px;
+    padding: 20px;
+  }
+
+  .bottom-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+}

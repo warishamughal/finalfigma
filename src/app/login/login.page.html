@@ -1,0 +1,133 @@
+<ion-content fullscreen class="login-content" scroll-y="false">
+  <div class="half-circle left"></div>
+  <div class="half-circle right"></div>
+  
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="7" size-lg="5">
+        <div class="login-container">
+          
+          <!-- Puppy Animation -->
+          <div class="gradient-bg">
+            <div class="face">
+              <div class="face-upper" [ngClass]="{'stop-animation': isPasswordFocused, 'show-password': isPasswordVisible}">
+                <div class="eyes-container" [ngStyle]="getEyesStyle()">
+                  <div class="eye"><div class="pupil"></div></div>
+                  <div class="eye"><div class="pupil"></div></div>
+                </div>
+                <div class="nose-shape">
+                  <div class="inner-oval"></div>
+                </div>
+                <div class="mouth">
+                  <div class="mouth-line"></div>
+                  <div class="mouth-base"></div>
+                  <div class="tongue" [ngClass]="{'paused': isPasswordFocused}"></div>
+                </div>
+              </div>
+              
+              <!-- Hands -->
+              <div class="hands" [ngClass]="getHandsClass()">
+                <div class="fingers">
+                  <div class="finger small left"></div>
+                  <div class="finger big"></div>
+                  <div class="finger small right"></div>
+                </div>
+                <div class="fingers right">
+                  <div class="finger small left"></div>
+                  <div class="finger big"></div>
+                  <div class="finger small right"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Login Form -->
+          <form [formGroup]="loginForm" (ngSubmit)="submit()" class="form-container">
+            <div class="login-box">
+              <h1 class="login-title">Login</h1>
+              <p class="login-subtitle">Enter your email and password</p>
+
+              <!-- Email Input -->
+              <div class="input-group">
+                <ion-input
+                  label="Email"
+                  label-placement="floating"
+                  fill="outline"
+                  type="email"
+                  formControlName="username"
+                  placeholder="you@example.com"
+                  class="custom-input"
+                  [class.invalid]="username?.invalid && username?.touched"
+                  [class.valid]="username?.valid"
+                  (ionFocus)="onEmailFocus()"
+                  (ionBlur)="onEmailBlur()">
+                </ion-input>
+                <div *ngIf="username?.invalid && username?.touched" class="error">
+                  <span>Valid email is required</span>
+                </div>
+              </div>
+
+              <!-- Password Input -->
+              <div class="input-group">
+                <div style="position: relative; width: 100%;">
+                  <ion-input
+                    label="Password"
+                    label-placement="floating"
+                    fill="outline"
+                    [type]="showPassword ? 'text' : 'password'"
+                    formControlName="password"
+                    placeholder="Enter your password"
+                    class="custom-input password-input"
+                    style="padding-right: 45px;"
+                    [class.invalid]="password?.invalid && password?.touched"
+                    (ionInput)="validatePassword()"
+                    (ionFocus)="onPasswordFocus()"
+                    (ionBlur)="onPasswordBlur()">
+                  </ion-input>
+                  <ion-icon
+                    class="eye-icon"
+                    [name]="showPassword ? 'eye-off' : 'eye'"
+                    (click)="togglePasswordVisibility()"
+                    style="position: absolute; right: 15px; top: -10%; transform: translateY(-50%); cursor: pointer; font-size: 22px; color: #666;">
+                  </ion-icon>
+                </div>
+              </div>
+
+              <!-- Password Rules -->
+              <div class="password-rules">
+                <p [class.valid]="passwordConditions.length">✔ Must be at least 8 characters</p>
+                <p [class.valid]="passwordConditions.uppercase">✔ Must contain 1 uppercase letter</p>
+                <p [class.valid]="passwordConditions.lowercase">✔ Must contain 1 lowercase letter</p>
+                <p [class.valid]="passwordConditions.digit">✔ Must contain 1 digit</p>
+                <p [class.valid]="passwordConditions.special">✔ Must contain 1 special symbol</p>
+              </div>
+
+              <!-- Forgot Password -->
+              <div class="forgot-password-container">
+                <a href="#" class="forgot-password">Forgot Password?</a>
+              </div>
+
+              <!-- Submit Button -->
+              <ion-button 
+                expand="block"
+                type="submit"
+                class="signin-btn"
+                [disabled]="buttonDisabled || permanentDisabled || loginForm.invalid || !allPasswordValid()">
+                <ng-container *ngIf="!buttonDisabled && !permanentDisabled">Login</ng-container>
+                <ng-container *ngIf="buttonDisabled">Wait {{ countdown }}s</ng-container>
+                <div *ngIf="permanentDisabled">🚫 Permanently Disabled</div>
+              </ion-button>
+
+              <!-- Signup Link -->
+              <div class="signup-container">
+                <span class="signup-text">Don't have an account? </span>
+                <a href="#" class="signup-link">Signup</a>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

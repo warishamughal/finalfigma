@@ -1,0 +1,48 @@
+<ion-footer>
+  <ion-toolbar class="footer-toolbar">
+    <div class="nav-container">
+
+      <div class="nav-item shop"
+           (click)="setActive('shop'); go()"
+           [class.active]="activePage==='shop'">
+        <ion-icon name="bag-handle-outline" class="icon"></ion-icon>
+        <span class="nav-text">Shop</span>
+      </div>
+
+      <div class="nav-item cart"
+           (click)="setActive('cart'); cart()"
+           [class.active]="activePage==='cart'">
+        <ion-icon name="cart-outline" class="icon"></ion-icon>
+        @if (cartCount() > 0) {
+          <ion-badge class="cart-badge" color="primary">{{ cartCount() }}</ion-badge>
+        }
+        <span class="nav-text">Cart</span>
+      </div>
+
+      <div class="nav-item explore"
+           (click)="setActive('explore'); expo()"
+           [class.active]="activePage==='explore'">
+        <ion-icon name="compass-outline" class="icon"></ion-icon>
+        <span class="nav-text">Explore</span>
+      </div>
+
+      <div class="nav-item favorites"
+           (click)="setActive('favorites'); fvrt()"
+           [class.active]="activePage==='favorites'">
+        <ion-icon name="heart-outline" class="icon"></ion-icon>
+        <span class="nav-text">Favorites</span>
+        @if (favCount() > 0) {
+          <ion-badge class="fav-badge" color="danger">{{ favCount() }}</ion-badge>
+        }
+      </div>
+
+      <div class="nav-item profile"
+           (click)="setActive('profile'); pro()"
+           [class.active]="activePage==='profile'">
+        <ion-icon name="person" class="icon"></ion-icon>
+        <span class="nav-text">Profile</span>
+      </div>
+
+    </div>
+  </ion-toolbar>
+</ion-footer>

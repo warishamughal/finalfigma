@@ -1,0 +1,76 @@
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.product-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 10px;
+  background: #fff;
+}
+
+.product-img {
+  width: 100%;
+  height: 100px; /* fixed height */
+  object-fit: contain;
+}
+.apple-img{
+   width: 100%;
+  height: 100px; /* fixed height */
+  object-fit: contain;
+}
+.product-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 6px 0 2px;
+  margin-top: 10px;
+  margin-left: 6px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+               'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+  /* equal alignment ke liye */
+  min-height: 40px;   /* 2 lines ke liye jagah reserve */
+  line-height: 20px;  /* ek line ki height */
+  overflow: hidden;   /* extra text hide ho */
+}
+
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.add-btn {
+  --border-radius: 35%;
+  --padding-start: 6px;
+  --padding-end: 6px;
+  height: 38px;
+  width: 38px;
+  --background: #5db17c;
+  --color: #fff;
+}
+.add{
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+}.category-swiper {
+  margin: 12px 0;
+  width: 100%;
+}

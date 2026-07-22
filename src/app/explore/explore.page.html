@@ -1,0 +1,82 @@
+<ion-content class="ion-padding">
+  <div class="find">
+    <span class="find">Find Products</span>
+  </div>
+
+  <div class="ch">
+    <p>Choose from different categories</p>
+  </div>
+
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-center search-row">
+      <ion-col size="10" size-md="9" class="search-col">
+        <ion-searchbar
+          placeholder="Search Store"
+          class="search"
+          [(ngModel)]="searchTerm"
+          (ionInput)="onSearch($event)">
+        </ion-searchbar>
+      </ion-col>
+      <ion-col size="2" size-md="1" class="icon-col">
+        <ion-button fill="clear" (click)="option()" class="option-btn">
+          <ion-icon name="options-outline" slot="icon-only" class="option"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- ✅ Category Chips - *ngFor → @for -->
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="12">
+        <swiper-container slides-per-view="1.5" space-between="10" class="category-swiper"
+          breakpoints='{"576":{"slidesPerView":3,"spaceBetween":10},"768":{"slidesPerView":6,"spaceBetween":15}}'>
+          @for (chip of product4; track chip) {
+            <swiper-slide>
+              <ion-card class="chip-card" 
+                        (click)="selectCategory(chip)" 
+                        [ngClass]="{'active-chip': activeChip === chip.name}">
+                <div class="chip-content">
+                  @if (chip.img) {
+                    <img [src]="chip.img" alt="{{chip.name}}" class="chip-img" />
+                  }
+                  <span>{{chip.name}}</span>
+                </div>
+              </ion-card>
+            </swiper-slide>
+          }
+        </swiper-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- ✅ Products - *ngFor → @for, favProducts() signal -->
+  <ion-grid>
+    <ion-row>
+      @for (item of filteredProducts | search: searchTerm; track item) {
+        <ion-col size="6" size-md="3">
+          <div class="product-card" (click)="openProduct(item)">
+            <ion-icon
+              [name]="item.isFavorite ? 'heart' : 'heart-outline'"
+              class="heart-icon"
+              color="danger"
+              (click)="toggleFav(item); $event.stopPropagation()">
+            </ion-icon>
+            <img [src]="item.img" alt="{{item.name}}" class="product-img" />
+            <h4 class="product-title">{{ item.name }}</h4>
+            <span class="price">${{ item.price }}</span>
+          </div>
+        </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more products...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+<app-footer></app-footer>

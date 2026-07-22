@@ -1,0 +1,45 @@
+<ion-content class="filter-content">
+  <div class="close">
+    <ion-icon 
+      name="close-outline" 
+      class="close-icon" 
+      (click)="closePage()">
+    </ion-icon>
+    <h1 class="fil">Filters</h1>
+  </div>
+
+  <div class="filter-box">
+
+    <!-- Categories -->
+    <h2 class="section-title">Categories</h2>
+    <ion-list lines="none">
+      <ion-item *ngFor="let cat of categories">
+        <ion-checkbox 
+          slot="start" 
+          color="success" 
+          (ionChange)="toggleCategory(cat, $event)">
+        </ion-checkbox>
+        <ion-label>{{ cat }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Prices -->
+    <h2 class="section-title">Price</h2>
+    <ion-list lines="none">
+      <ion-item *ngFor="let price of prices">
+        <ion-checkbox 
+          slot="start"  
+          color="success" 
+          (ionChange)="togglePrice(price, $event)">
+        </ion-checkbox>
+        <ion-label>{{ price }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <div class="btn-wrap">
+      <ion-button expand="block" fill="clear" class="button" (click)="applyFilters()">
+        Apply Filter
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

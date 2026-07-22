@@ -1,0 +1,27 @@
+<div class="product-card" (click)="onProductClick()">
+  
+ 
+  <ion-icon
+    [name]="item.isFavorite ? 'heart' : 'heart-outline'"
+    class="heart-icon"
+    color="danger"
+    (click)="onFavToggle($event)">
+  </ion-icon>
+
+
+  <img [src]="item.img" alt="{{ item.name }}" class="product-img" />
+
+
+  <h4 class="product-title">{{ item.name }}</h4>
+  <p class="product-sub">{{ item.size }}</p>
+
+ 
+  <div class="bottom-row">
+    <span class="price">${{ item.price }}</span>
+    <ion-button fill="clear" size="small" class="add-btn"
+      (click)="onAddToCart($event)">
+      <ion-icon name="add-outline" class="add"></ion-icon>
+    </ion-button>
+  </div>
+
+</div>

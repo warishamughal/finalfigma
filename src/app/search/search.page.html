@@ -1,0 +1,102 @@
+<ion-content>
+
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+
+      <!-- Searchbar -->
+      <ion-col size="10" size-md="6" offset-md="2">
+        <ion-searchbar
+          placeholder="Egg"
+          show-clear-button="always"
+          animated
+        >
+        </ion-searchbar>
+      </ion-col>
+
+      <!-- Filter Icon -->
+      <ion-col size="2" class="ion-text-center">
+        <ion-button fill="clear" >
+          <ion-icon name="options-outline" slot="icon-only" ></ion-icon>
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+
+
+
+
+  <ion-grid>
+  <ion-row>
+
+@for(item of product;track item){
+    <ion-col size="6" size-md="3" size-sm="4">
+      <div class="product-card" (click)="openProduct(item)">
+        <img src="{{item.img}}" 
+             alt="Beaf Bone" class="product-img" />
+        <h4 class="product-title">{{item.name}}</h4>
+        <p class="product-sub">{{item.size}}</p>
+        <div class="bottom-row">
+          <span class="price">${{item.price}}</span>
+          <ion-button fill="clear" size="small" class="add-btn">
+            <ion-icon name="add-outline" class="add"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-col>
+
+
+  }
+
+
+
+    <!-- Card 2 -->
+ 
+
+  </ion-row>
+</ion-grid>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="footer-toolbar">
+    <div class="nav-container">
+      <div class="nav-item shop"
+           (click)="setActive('shop')"
+           [class.active]="activePage==='shop'">
+        <ion-icon name="bag-handle-outline" class="icon"></ion-icon>
+        <span class="nav-text">Shop</span>
+      </div>
+      
+      <div class="nav-item cart"
+           (click)="setActive('cart')"
+           [class.active]="activePage==='cart'">
+        <ion-icon name="cart-outline" class="icon"></ion-icon>
+        <span class="nav-text">Cart</span>
+      </div>
+      
+      <div class="nav-item explore"
+           (click)="setActive('explore')"
+           [class.active]="activePage==='explore'">
+        <ion-icon name="compass-outline" class="icon"></ion-icon>
+        <span class="nav-text">Explore</span>
+      </div>
+      
+      <div class="nav-item favorites"
+           (click)="setActive('favorites')"
+           [class.active]="activePage==='favorites'">
+        <ion-icon name="heart-outline" class="icon"></ion-icon>
+        <span class="nav-text">Favorites</span>
+      </div>
+      
+      <div class="nav-item profile"
+           (click)="setActive('profile')"
+           [class.active]="activePage==='profile'">
+        <ion-icon name="person" class="icon"></ion-icon>
+        <span class="nav-text">Profile</span>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

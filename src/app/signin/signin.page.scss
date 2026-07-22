@@ -1,0 +1,114 @@
+.login-bg {
+  --background: #fff; /* white background */
+}
+
+.top-img {
+  height: 380px;
+  width: 100%;
+  margin-top: -20px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center; /* center me align kare */
+  align-items: center;
+}
+
+.top-img img {
+  height: 100%;
+  width: 100%; /* full width le */
+  object-fit: cover; /* full width cover kare */
+  object-position: top; /* center se adjust ho */
+}
+
+.content-wrap {
+  padding: 20px;
+  text-align: left;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #000;margin-top: 70px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+
+.flag {
+  width: 28px;
+  height: 18px;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+.or-text {
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+  margin: 20px 0;
+  margin-top: -10px;
+}
+
+.google-btn {
+  --background: #4285f4;
+  --border-radius: 12px;
+  height: 40px;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.fb-btn {
+  --background: #3b5998;
+  --border-radius: 12px;
+  height: 40px;
+}
+
+@media (min-width: 768px) {
+  .top-img {
+    height: 490px !important;  /* parent ko bhi same height do */
+    width: 90%;
+    margin-top: -20px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #000;margin-top: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+  .top-img img {
+    width: 100%;
+    height: 100% !important; /* parent ki height follow karega */
+    object-fit: cover;       /* image stretch na ho, crop ho */
+  }
+}
+
+@media (max-width: 480px) {
+  .top-img img {
+    width: 100%; /* small screens ke liye bhi full width */
+  }
+}.img-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;  /* horizontally center */
+  align-items: center;      /* vertically center */
+}
+
+.img-wrapper img {
+  max-width: 100%;  /* responsive width */
+  height: auto;     /* maintain aspect ratio */
+}

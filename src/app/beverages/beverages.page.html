@@ -1,0 +1,44 @@
+<!-- beverages.page.html -->
+<ion-content [fullscreen]="true">
+
+  <!-- Simple top bar in div -->
+  <div class="top-bar">
+    <ion-button fill="clear">
+      <ion-icon name="arrow-back-outline" color="dark"></ion-icon>
+    </ion-button>
+
+    <h2 class="page-title">Beverages</h2>
+
+    <ion-button fill="clear">
+      <ion-icon name="ellipsis-horizontal" color="dark"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- Searchbar -->
+<ion-grid>
+  <ion-row>
+
+    @for(item of product;track item)
+    {
+    <ion-col size="6" size-md="3">
+      <div class="product-card" (click)="openProduct(item)">
+        <img src="p{{item.img}}" 
+             alt="Beaf Bone" class="product-img" />
+        <h4 class="product-title">{{item.name}}</h4>
+        <p class="product-sub">{{item.size}}</p>
+        <div class="bottom-row">
+          <span class="price">${{item.price}}</span>
+          <ion-button fill="clear" size="small" class="add-btn">
+            <ion-icon name="add-outline" class="add"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-col>
+}
+    <!-- Card 2 -->
+    
+
+  </ion-row>
+</ion-grid>
+
+</ion-content>

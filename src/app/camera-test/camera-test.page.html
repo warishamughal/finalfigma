@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Camera Test</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 20px; text-align: center;">
+    
+    <h2>Camera Plugin Test</h2>
+    
+    <ion-button (click)="takePicture()" expand="block">
+      📷 Take Photo
+    </ion-button>
+    
+    <ion-button (click)="pickFromGallery()" expand="block" color="secondary">
+      🖼️ Choose from Gallery
+    </ion-button>
+    
+    <div *ngIf="photo" style="margin-top: 20px;">
+      <h3>Captured Photo:</h3>
+      <img [src]="photo" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+    </div>
+    
+  </div>
+</ion-content>

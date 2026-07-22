@@ -1,0 +1,173 @@
+ion-content {
+  --background: #fff;
+}
+
+.top-section {
+  background: linear-gradient(135deg, #f3e7ff 0%, #e8d9ff 100%); // halka purple gradient
+  position: relative;
+  padding: 16px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.header-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-icons .icon {
+  font-size: 24px;
+  color: #333;
+}
+
+.product-image {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.product-image img {
+  width: 290px;
+  height: auto;
+}
+
+.product-info {
+  padding: 16px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: #222;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.qty-price {
+  display: flex;
+  justify-content: space-between; /* left me qty-box, right me price */
+  align-items: center;
+}
+
+.qty-box {
+  display: flex;
+  align-items: center;
+  margin-top: -15px;
+  gap: 6px;
+}
+
+.qty-number {
+  height: 35px;
+  width: 35px;
+  border: solid 1px grey;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;   /* vertical center */
+  justify-content: center; /* horizontal center */
+}
+
+.price {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: -15px;
+}
+
+.product-section {
+  margin-top: 10px;
+  border-top: 1px solid #e0e0e0; /* top line */
+}
+
+.accordion-title {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+}
+
+.accordion-content {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+ion-item {
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+}
+
+/* Basket Button */
+.basket-btn {
+  --background: linear-gradient(
+    135deg,
+    rgba(110, 33, 182, 0.9) 0%,     /* deep royal purple */
+    rgba(138, 43, 226, 0.8) 50%,   /* vibrant mid purple */
+    rgba(171, 102, 244, 0.6) 100%  /* soft lavender shine */
+  );
+  --border-radius: 12px;
+  font-size: 14px;
+  height: 55px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+
+  /* ✨ Glass + depth effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+ 
+}
+
+/* 🌟 Hover / Active glow effect */
+.basket-btn:hover {
+  --background: linear-gradient(
+    135deg,
+    rgb(137, 38, 236) 0%,
+    rgba(186, 85, 255, 0.85) 50%,
+    rgba(230, 180, 255, 0.7) 100%
+  );
+
+}
+
+
+.size-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 36px;
+}
+
+.size-buttons ion-button {
+  --border-radius: 12px;
+  min-width: 60px;
+  height: 45px;
+  font-weight: 500;
+  --background: transparent;
+  --border-color: #9b7fd4;
+  --border-width: 2px;
+  --border-style: solid;
+  color: #9b7fd4;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Jab button select ho ya click ho */
+.size-buttons ion-button.selected {
+  --background: #9b7fd4;
+  --border-color: #9b7fd4;
+  color: #fff !important;
+  box-shadow: 0 2px 10px rgba(155, 127, 212, 0.3);
+}

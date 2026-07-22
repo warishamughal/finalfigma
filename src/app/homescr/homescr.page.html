@@ -1,0 +1,269 @@
+<ion-content class="offwhite-bg">
+
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="hand-wrap" [class.active]="handActive">
+    <div class="arm"></div>
+    <div class="thumb"></div>
+    <div class="finger1"></div>
+    <div class="finger2"></div>
+    <div class="finger3"></div>
+  </div>
+
+  <div class="wrinkle-overlay">
+    <div class="wrinkle-line l1" [class.active]="linesActive"></div>
+    <div class="wrinkle-line l2" [class.active]="linesActive"></div>
+    <div class="wrinkle-line l3" [class.active]="linesActive"></div>
+    <div class="wrinkle-line r1" [class.active]="linesActive"></div>
+    <div class="wrinkle-line r2" [class.active]="linesActive"></div>
+    <div class="wrinkle-line r3" [class.active]="linesActive"></div>
+    <div class="wrinkle-line r4" [class.active]="linesActive"></div>
+  </div>
+
+  <div class="page-content" [class.active]="pageActive">
+
+    <div class="top-logo" (click)="goto()">
+      <img src="../../assets/img/carrot.png" alt="Carrot" />
+    </div>
+
+    <div class="location-row">
+      <ion-icon name="location-outline" class="loc"></ion-icon>
+      <span>Dhaka, Banassre</span>
+    </div>
+
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="9">
+          <ion-searchbar 
+            placeholder="Search Store" 
+            class="search"
+            [(ngModel)]="searchTerm">
+          </ion-searchbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- ============================================================ -->
+    <!-- 🔍 SEARCH RESULTS                                             -->
+    <!-- ============================================================ -->
+    @if (searchTerm && searchTerm.length > 0) {
+      <ion-grid>
+        <ion-row class="section-header">
+          <ion-col size="12">
+            <h2 class="section-title">Search Results</h2>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          @for (item of (product | search:searchTerm); track item) {
+            <ion-col size="6" size-md="3">
+
+              <!-- ✅ CHILD COMPONENT -->
+              <app-product-card
+                [item]="item"
+                (productClick)="openProduct($event)"
+                (favToggle)="toggleFav($event)"
+                (addCart)="global.addToCart($event)">
+              </app-product-card>
+
+            </ion-col>
+          }
+
+          @if ((product | search:searchTerm).length === 0) {
+            <ion-col size="12" class="ion-text-center">
+              <p style="padding: 40px; color: #999;">No products found</p>
+            </ion-col>
+          }
+        </ion-row>
+      </ion-grid>
+    }
+
+    <!-- ============================================================ -->
+    <!-- 📦 REGULAR CONTENT                                            -->
+    <!-- ============================================================ -->
+    @if (!searchTerm || searchTerm.length === 0) {
+
+      <!-- Banner -->
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" size-md="12">
+            <swiper-container
+              [slidesPerView]="1"
+              [pagination]="true"
+              [autoplay]="{ delay: 2500 }"
+              [breakpoints]="{ '768': { slidesPerView: 3 } }"
+              class="banner-swiper">
+
+              <swiper-slide>
+                <div class="banner">
+                  <img src="../../assets/img/Fresh vegetables in a paper bag.png" class="veg-left" />
+                  <div class="banner-text">
+                    <h2>Fresh Vegetables</h2>
+                    <p>Get Up To 40% OFF</p>
+                  </div>
+                  <img src="../../assets/img/11,539,400+ Vegetables Stock Photos, Pictures & Royalty-Free Images - iStock.png" class="veg-top" />
+                  <img src="../../assets/img/Tartare de boeuf façon César _ RICARDO.png" class="veg-bottom" />
+                </div>
+              </swiper-slide>
+
+              <swiper-slide>
+                <div class="banner">
+                  <img src="../../assets/img/Fresh vegetables in a paper bag.png" class="veg-left" />
+                  <div class="banner-text">
+                    <h2>Fresh Fruits</h2>
+                    <p style="margin-right: 25px;">Special Discount</p>
+                  </div>
+                  <img src="../../assets/img/11,539,400+ Vegetables Stock Photos, Pictures & Royalty-Free Images - iStock.png" class="veg-top" />
+                  <img src="../../assets/img/Tartare de boeuf façon César _ RICARDO.png" class="veg-bottom" />
+                </div>
+              </swiper-slide>
+
+              <swiper-slide>
+                <div class="banner">
+                  <img src="../../assets/img/Fresh vegetables in a paper bag.png" class="veg-left" />
+                  <div class="banner-text">
+                    <h2>Daily Grocery</h2>
+                    <p>Save Big Today</p>
+                  </div>
+                  <img src="../../assets/img/11,539,400+ Vegetables Stock Photos, Pictures & Royalty-Free Images - iStock.png" class="veg-top" />
+                  <img src="../../assets/img/Tartare de boeuf façon César _ RICARDO.png" class="veg-bottom" />
+                </div>
+              </swiper-slide>
+
+            </swiper-container>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+
+        <!-- ========================== -->
+        <!-- Section 1: Exclusive Offer -->
+        <!-- ========================== -->
+        <ion-row class="section-header">
+          <ion-col size="6"><h2 class="section-title">Exclusive Offer</h2></ion-col>
+          <ion-col size="6" class="ion-text-right"><a href="#" class="see-all">See all</a></ion-col>
+        </ion-row>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12" size-md="12">
+              <swiper-container slides-per-view="2" space-between="10"
+                breakpoints='{"576":{"slidesPerView":3},"768":{"slidesPerView":4}}'
+                class="product-swiper">
+
+                @for (item of product1; track item) {
+                  <swiper-slide>
+
+                    <!-- ✅ CHILD COMPONENT -->
+                    <app-product-card
+                      [item]="item"
+                      (productClick)="openProduct($event)"
+                      (favToggle)="toggleFav($event)"
+                      (addCart)="global.addToCart($event)">
+                    </app-product-card>
+
+                  </swiper-slide>
+                }
+              </swiper-container>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!-- ======================== -->
+        <!-- Section 2: Best Selling  -->
+        <!-- ======================== -->
+        <ion-row class="section-header">
+          <ion-col size="6"><h2 class="section-title">Best Selling</h2></ion-col>
+          <ion-col size="6" class="ion-text-right"><a href="#" class="see-all">See all</a></ion-col>
+        </ion-row>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12" size-md="12">
+              <swiper-container slides-per-view="2" space-between="10"
+                breakpoints='{"576":{"slidesPerView":3},"768":{"slidesPerView":4}}'
+                class="product-swiper">
+
+                @for (item of product2; track item) {
+                  <swiper-slide>
+
+                    <!-- ✅ CHILD COMPONENT -->
+                    <app-product-card
+                      [item]="item"
+                      (productClick)="openProduct($event)"
+                      (favToggle)="toggleFav($event)"
+                      (addCart)="global.addToCart($event)">
+                    </app-product-card>
+
+                  </swiper-slide>
+                }
+              </swiper-container>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!-- ====================================================== -->
+        <!-- Section 3: Groceries (chip style — ProductCard nahi)   -->
+        <!-- ====================================================== -->
+        <ion-row class="section-header">
+          <ion-col size="6"><h2 class="section-title">Groceries</h2></ion-col>
+          <ion-col size="6" class="ion-text-right"><a href="#" class="see-all">See all</a></ion-col>
+        </ion-row>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12" size-md="12">
+              <swiper-container slides-per-view="1.5" space-between="10"
+                class="category-swiper"
+                breakpoints='{"576":{"slidesPerView":3},"768":{"slidesPerView":6}}'>
+
+                @for (item of product4; track item) {
+                  <swiper-slide>
+                    <ion-card class="chip-card" style="background-color: rgb(245, 224, 250);">
+                      <div class="chip-content">
+                        <img [src]="item.img" alt="{{ item.name }}" class="chip-img" />
+                        <span style="font-size: 19px; margin-left: 20px; color: rgb(87, 39, 39);">
+                          {{ item.name }}
+                        </span>
+                      </div>
+                    </ion-card>
+                  </swiper-slide>
+                }
+              </swiper-container>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!-- ========================== -->
+        <!-- Section 4: More Products   -->
+        <!-- ========================== -->
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12" size-md="12">
+              <swiper-container slides-per-view="2" space-between="10"
+                breakpoints='{"576":{"slidesPerView":3},"768":{"slidesPerView":4}}'
+                class="product-swiper">
+
+                @for (item of product3; track item) {
+                  <swiper-slide>
+
+                    <!-- ✅ CHILD COMPONENT -->
+                    <app-product-card
+                      [item]="item"
+                      (productClick)="openProduct($event)"
+                      (favToggle)="toggleFav($event)"
+                      (addCart)="global.addToCart($event)">
+                    </app-product-card>
+
+                  </swiper-slide>
+                }
+              </swiper-container>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-grid>
+    }
+
+  </div>
+</ion-content>

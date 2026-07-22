@@ -1,0 +1,106 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+
+      <!-- ===== LEFT: Product Image Section ===== -->
+      <ion-col size="12" size-md="6" class="no-padding">
+        <div class="top-section">
+          <div class="header-icons">
+            <ion-icon name="arrow-back-outline" (click)="goBack()" class="icon"></ion-icon>
+            <ion-icon
+              [name]="isFav() ? 'heart' : 'heart-outline'"
+              color="danger"
+              (click)="toggleFav()"
+              class="icon">
+            </ion-icon>
+            <ion-icon name="share-outline" class="icon"></ion-icon>
+          </div>
+
+          <div class="product-image">
+            <img [src]="product?.img" [alt]="product?.name" />
+          </div>
+        </div>
+      </ion-col>
+
+      <!-- ===== RIGHT: Product Info Section ===== -->
+      <ion-col size="12" size-md="6">
+        <div class="product-info">
+
+          <div class="info-header">
+            <div>
+              <h2 class="title">{{ product?.name }}</h2>
+              <p class="subtitle">{{ selectedSize }}</p>
+            </div>
+            @if (cartCount() > 0) {
+              <div class="cart-indicator">
+                🛒 {{ cartCount() }}
+              </div>
+            }
+          </div>
+
+          <div class="qty-price">
+            <div class="qty-box">
+              <ion-button fill="clear" size="small" class="qty-btn" (click)="decreaseQty()">
+                <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+              </ion-button>
+              <div class="qty-number">{{ quantity }}</div>
+              <ion-button fill="clear" size="small" class="qty-btn" (click)="increaseQty()">
+                <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+              </ion-button>
+            </div>
+            <div class="price">${{ product?.price }}</div>
+          </div>
+        </div>
+
+        <!-- Accordion + Sizes + Review -->
+        <ion-list class="product-section" lines="full">
+          <ion-accordion-group>
+            <ion-accordion value="details">
+              <ion-item slot="header">
+                <ion-label class="accordion-title">Product Detail</ion-label>
+              </ion-item>
+              <div class="ion-padding accordion-content" slot="content">
+                {{ product?.name }} is a fresh and high-quality product.
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+
+          <!-- Size Selection -->
+          <ion-item lines="none">
+            <ion-label class="accordion-title">Select Size</ion-label>
+          </ion-item>
+
+          <div class="size-buttons">
+            @for (s of sizes; track s) {
+              <ion-button
+                [fill]="selectedSize === s ? 'solid' : 'outline'"
+                size="small"
+                (click)="selectSize(s)">
+                {{ s }}
+              </ion-button>
+            }
+          </div>
+
+          <ion-item button detail>
+            <ion-label class="accordion-title">Review</ion-label>
+            <div slot="end" class="stars">
+              <ion-icon name="star" color="warning"></ion-icon>
+              <ion-icon name="star" color="warning"></ion-icon>
+              <ion-icon name="star" color="warning"></ion-icon>
+              <ion-icon name="star" color="warning"></ion-icon>
+              <ion-icon name="star" color="warning"></ion-icon>
+            </div>
+          </ion-item>
+        </ion-list>
+
+        <!-- Add to Basket -->
+        <div class="button">
+          <ion-button expand="block" fill="clear" class="basket-btn" (click)="addToCart()">
+            <span style="color: white;">Add To Basket</span>
+          </ion-button>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

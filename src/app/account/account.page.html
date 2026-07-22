@@ -1,0 +1,176 @@
+<ion-content [fullscreen]="true" class="profile-page">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="7" offset-md="3" class="profile-left">
+        <div class="profile-header">
+          <ion-avatar class="profile-avatar" (click)="changeProfilePicture()" 
+                      style="cursor: pointer; position: relative;">
+            <img [src]="photo || '../../assets/img/dp.jpg'" alt="Profile" />
+            <div style="position: absolute; bottom: 0; right: 0; background: var(--ion-color-primary); 
+                        border-radius: 50%; width: 32px; height: 32px; display: flex; 
+                        align-items: center; justify-content: center; border: 2px solid white;">
+              <ion-icon name="camera" style="color: white; font-size: 16px;"></ion-icon>
+            </div>
+          </ion-avatar>
+          <div class="profile-info">
+            <h2>
+              Afsar Hossen 
+              <ion-icon name="create-outline" class="edit-icon" 
+                        (click)="changeProfilePicture()" style="cursor: pointer;">
+              </ion-icon>
+            </h2>
+            <p>lmshuvo97@gmail.com</p>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="12" size-md="6" offset-md="3" class="profile-right">
+        <ion-list lines="full" class="settings-list">
+
+          <ion-item button detail="false" (click)="presentFailAlert()">
+            <ion-icon name="bag-handle-outline" slot="start"></ion-icon>
+            <ion-label>Orders</ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label>My Details</ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="location-outline" slot="start"></ion-icon>
+            <ion-label>Delivery Address</ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="card-outline" slot="start"></ion-icon>
+            <ion-label>Payment Methods</ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="ticket-outline" slot="start"></ion-icon>
+            <ion-label>Promo Code</ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="notifications-outline" slot="start"></ion-icon>
+            <ion-label>Notifications</ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+            <ion-label>Help</ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+
+          <ion-item button detail="false" (click)="showDeviceInfoModal()">
+            <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+            <ion-label>About</ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+
+        </ion-list>
+
+        <div class="logout-section">
+          <ion-button expand="block" fill="clear" class="logout-btn">
+            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+            Log Out
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- Device Info Modal -->
+<ion-modal [isOpen]="showDeviceInfo" (didDismiss)="closeDeviceInfo()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title style="margin: 50px;">Device Information</ion-title>
+        <ion-button slot="end" fill="clear" (click)="closeDeviceInfo()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="device-info-content">
+
+      <!-- ✅ *ngIf → @if -->
+      @if (deviceInfo && !deviceInfo.error) {
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+              Device Details
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label><h3>Model</h3><p>{{ deviceInfo.model }}</p></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><h3>Platform</h3><p>{{ deviceInfo.platform }}</p></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Operating System</h3>
+                  <p>{{ deviceInfo.operatingSystem }} {{ deviceInfo.osVersion }}</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><h3>Manufacturer</h3><p>{{ deviceInfo.manufacturer }}</p></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><h3>Memory Used</h3><p>{{ deviceInfo.memUsed }}</p></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Battery Level</h3>
+                  <p>{{ deviceInfo.batteryLevel }} ({{ deviceInfo.isCharging }})</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><h3>Language</h3><p>{{ deviceInfo.language }}</p></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Device ID</h3>
+                  <p style="font-size: 11px; word-break: break-all;">{{ deviceInfo.deviceId }}</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><h3>🌐 Network Status</h3><p>{{ deviceInfo.networkConnected }}</p></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><h3>📡 Connection Type</h3><p>{{ deviceInfo.connectionType }}</p></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><h3>📶 Network Strength</h3><p>{{ deviceInfo.networkStrength }}</p></ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      }
+
+      @if (deviceInfo?.error) {
+        <ion-card>
+          <ion-card-content>
+            <p style="text-align: center; color: red;">{{ deviceInfo.error }}</p>
+          </ion-card-content>
+        </ion-card>
+      }
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<app-footer></app-footer>

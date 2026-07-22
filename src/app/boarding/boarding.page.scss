@@ -1,0 +1,189 @@
+/* 🌸 MAIN BACKGROUND CONTAINER */
+.bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  /* 💜 Light Purple Gradient (135deg) with Glassy Effect */
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #f3e8ff 0%, #d7bcf3 25%, #e8b7f8 50%, #deb4fa 75%, #c362f0 100%);
+  
+  /* Glass morphism backdrop */
+  backdrop-filter: blur(10px);
+}
+
+/* 🌸 BACKGROUND IMAGE (Pink Icon) */
+.bg-img {
+  position: absolute;
+  top: 0;
+ 
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+  opacity: 1;
+  margin-top: -30px;
+  
+  /* Smooth slide-in from bottom */
+  animation: imgSlideUp 1.4s ease-out;
+  animation-delay: 0.9s;
+}
+
+@keyframes imgSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 💻 TABLET / DESKTOP */
+@media (min-width: 768px) {
+  .bg-img {
+    object-fit: contain;
+  }
+}
+
+/* 🌈 OVERLAY CONTENT */
+.overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px 40px;
+  color: white;
+  background: transparent;
+}
+
+/* 🥕 SECOND IMAGE */
+.carrot {
+  width: 40px;
+  height: 40px;
+  margin-top: 60px;
+  
+  /* Slide-in from left */
+  animation: carrotSlideIn 1.3s ease-out 0.8s both;
+   animation-delay: 0.9s;
+}
+
+@keyframes carrotSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ✨ TITLE */
+.title {
+  font-size: 32px;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  
+  /* Slide-in from right */
+  animation: titleSlideIn 1.3s ease-out 0.9s both;
+   animation-delay: 0.9s;
+}
+
+@keyframes titleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 📝 SUBTITLE */
+.subtitle {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 30px;
+  opacity: 0.95;
+  
+  /* Slide-in from left */
+  animation: subtitleSlideIn 1.4s ease-out 0.8s both;
+   animation-delay: 0.9s;
+}
+
+@keyframes subtitleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateX(0);
+  }
+}
+
+/* 💜 GET STARTED BUTTON */
+.get-started-btn {
+  --background: #3d1457;
+  border-radius: 20px;
+  --color: #fff;
+  width: 90%;
+  height: 50px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(188, 93, 248, 0.4);
+  transition: all 0.3s ease-in-out;
+  
+  /* Glassy button effect */
+  background: linear-gradient(135deg, rgba(188, 93, 248, 0.9), rgba(168, 85, 247, 0.85));
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  /* Slide-in from bottom */
+  animation: btnSlideUp 1.3s ease-out 0.9s both;
+   animation-delay: 0.9s;
+}
+
+@keyframes btnSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.get-started-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(188, 93, 248, 0.6);
+}
+
+/* 💻 TABLET / DESKTOP VIEW */
+@media (min-width: 768px) {
+  .get-started-btn {
+    width: 50%;
+    height: 60px;
+    border-radius: 40px;
+  }
+
+  .title {
+    font-size: 38px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+}

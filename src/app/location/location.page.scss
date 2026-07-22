@@ -1,0 +1,80 @@
+.top-section img {
+  width: 100%;
+  height: 320px;
+  object-fit: contain; /* contain => image cut nahi hogi */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  background: transparent; /* optional (kali ya safed background) */
+  margin-top: 0px;
+}
+
+.text-section {
+  margin: 20px 0;
+  margin-top: -30px;
+}
+
+.text-section h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.sub-text {
+  font-size: 16px;
+  color: rgb(109, 108, 108);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.accordion-section {
+  margin: 0 12px 20px ;
+  margin-top: 60px;
+}
+
+ion-item {
+  --border-radius: 12px;
+  margin: 6px 0;
+  --background: #f8f8f8;
+}
+.submit-btn {
+  margin: 20px;
+  margin-top: 40px;
+height: 55px;
+  /* ✅ yahan background set karo */
+  --background: rgb(110, 187, 94);
+  --color: #000; /* text ka rang black */
+}
+
+ion-button {
+  height: 60px;
+  --background: rgb(121, 210, 121); /* ✅ green background */
+  --color: #ffffff; /* ✅ text black */
+  --border-radius: 20px;
+  --box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+ion-item {
+  --background: #fff;
+  --inner-padding-end: 8px;
+ margin-left: -10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+ion-label p {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+
+ion-label h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 2px 0 ;
+  margin-top: 10px;
+}
+.accordion-wrapper{
+
+    margin-top: 90px;
+}

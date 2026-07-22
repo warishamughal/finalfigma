@@ -1,0 +1,80 @@
+<ion-content class="ion-padding">
+  <!-- Header -->
+  <div class="header">
+    <ion-icon name="arrow-back-outline" class="back" (click)="goBack()"></ion-icon>
+    <h2>Order Status</h2>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab" [class.active]="activeTab === 'pending'" (click)="changeTab('pending')">PENDING</div>
+    <div class="tab" [class.active]="activeTab === 'delivered'" (click)="changeTab('delivered')">DELIVERED</div>
+    <div class="tab" [class.active]="activeTab === 'cancelled'" (click)="changeTab('cancelled')">CANCELLED</div>
+  </div>
+
+  <!-- ✅ Pending Orders -->
+  <ng-container *ngIf="activeTab === 'pending'">
+    <ion-card class="product-card" *ngFor="let orderItem of pendingOrders">
+      <div class="card-content">
+        <div class="image-box">
+          <img [src]="orderItem.img" [alt]="orderItem.name" class="product-img" />
+        </div>
+
+        <div class="info">
+          <h3>{{ orderItem.name }}</h3>
+          <p>Color: {{ orderItem.color }}</p>
+          <p>Size: {{ orderItem.size }}</p>
+          <p>Qty: {{ orderItem.quantity }}</p>
+          <p class="price">Rs {{ orderItem.price * orderItem.quantity }}</p>
+
+          <div class="extra-info">
+            <p><b>Payment:</b> {{ payment | uppercase }}</p>
+            <p><b>Delivery:</b> {{ delivery | titlecase }}</p>
+            <p><b>Email:</b> {{ contactInfo?.email }}</p>
+          </div>
+
+          <div class="card-buttons">
+            <ion-button color="primary" (click)="deliverOrder(orderItem)">DELIVER</ion-button>
+            <ion-button color="medium" fill="outline" (click)="cancelOrder(orderItem)">CANCEL</ion-button>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </ng-container>
+
+  <!-- ✅ Delivered Orders -->
+  <ng-container *ngIf="activeTab === 'delivered'">
+    <ion-card class="product-card" *ngFor="let d of deliveredOrders">
+      <div class="card-content">
+        <div class="image-box">
+          <img [src]="d.img" [alt]="d.name" class="product-img" />
+        </div>
+        <div class="info">
+          <div class="header-line">
+            <h3>{{ d.name }}</h3>
+            <ion-icon name="trash-outline" class="trash" (click)="deleteDelivered(d)"></ion-icon>
+          </div>
+          <p>Status: Delivered</p>
+        </div>
+      </div>
+    </ion-card>
+  </ng-container>
+
+  <!-- ✅ Cancelled Orders -->
+  <ng-container *ngIf="activeTab === 'cancelled'">
+    <ion-card class="product-card" *ngFor="let c of cancelledOrders">
+      <div class="card-content">
+        <div class="image-box">
+          <img [src]="c.img" [alt]="c.name" class="product-img" />
+        </div>
+        <div class="info">
+          <div class="header-line">
+            <h3>{{ c.name }}</h3>
+            <ion-icon name="trash-outline" class="trash" (click)="deleteCancelled(c)"></ion-icon>
+          </div>
+          <p>Status: Cancelled</p>
+        </div>
+      </div>
+    </ion-card>
+  </ng-container>
+</ion-content>

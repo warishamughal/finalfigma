@@ -1,0 +1,75 @@
+<ion-content fullscreen="true" scroll-y="false">
+
+  <!-- Top Image/Location Placeholder -->
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" class="top-section">
+        <img src="../../assets/img/download (1).png" alt="Banner" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Centered Main Text + Subtext -->
+  <div class="text-section ion-text-center">
+    <h1>Select Your Location</h1>
+    <p class="sub-text">Switch on your location to stay in tune with <br>what's happening in your area</p>
+  </div>
+<ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6">
+
+        <!-- Accordion Wrapper -->
+        <div class="accordion-wrapper">
+          <ion-accordion-group expand="inset">
+
+            <!-- Zone Accordion -->
+            <ion-accordion value="zone">
+              <ion-item slot="header">
+                <ion-label>
+                  <p>Your Zone</p>
+                  <h2>Banasree</h2>
+                </ion-label>
+                <ion-icon slot="end" name="chevron-down-outline"></ion-icon>
+              </ion-item>
+              <div class="ion-padding" slot="content">
+                <ion-list>
+                  <ion-item>Banasree</ion-item>
+                  <ion-item>Gulshan</ion-item>
+                  <ion-item>Dhanmondi</ion-item>
+                </ion-list>
+              </div>
+            </ion-accordion>
+
+            <!-- Area Accordion -->
+            <ion-accordion value="area">
+              <ion-item slot="header">
+                <ion-label>
+                  <p>Your Area</p>
+                  <h2>Types of your area</h2>
+                </ion-label>
+                <ion-icon slot="end" name="chevron-down-outline"></ion-icon>
+              </ion-item>
+              <div class="ion-padding" slot="content">
+                <ion-list>
+                  <ion-item>Residential</ion-item>
+                  <ion-item>Commercial</ion-item>
+                  <ion-item>Industrial</ion-item>
+                </ion-list>
+              </div>
+            </ion-accordion>
+
+          </ion-accordion-group>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="ion-text-center submit-btn" style="margin-top:20px;">
+          <ion-button expand="block" shape="round" color="success">
+            <span style="font-size: 20px;">Submit</span>
+          </ion-button>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
